@@ -58,69 +58,62 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-xl shadow-sm border-b border-[#8FA67A]/15' 
+        ? 'bg-[#F8F6F1]/95 backdrop-blur-xl shadow-lg border-b-2 border-[#D6C38A]/30' 
         : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="/" onClick={handleLogoClick} className="flex items-center gap-3 group">
-            <div className="w-9 h-9 bg-[#A8D5E5] rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/>
-              </svg>
+          <a href="/" onClick={handleLogoClick} className="flex items-center gap-2 group">
+            
+            <div>
+              <span className="font-cormorant text-xl italic font-bold text-[#444444] group-hover:text-[#8FA67A] transition-colors">
+                Gilbert Splett
+              </span>
             </div>
-            <span className="font-cormorant text-xl italic font-bold text-[#444444] group-hover:text-[#8FA67A] transition-colors">
-              Gilbert Splett
-            </span>
           </a>
 
-          <div className="hidden md:flex items-center gap-0">
+          <div className="hidden md:flex items-center gap-1 bg-white/50 backdrop-blur-sm rounded-full px-2 py-1 border border-[#8FA67A]/10">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`relative px-4 py-2 text-sm font-nunito font-semibold transition-all duration-300 ${
+                className={`relative px-5 py-2 text-sm font-nunito font-semibold rounded-full transition-all duration-300 ${
                   activeSection === link.href.replace('#', '') && isHomePage
-                    ? 'text-[#8FA67A]'
-                    : 'text-[#444444]/50 hover:text-[#444444]'
+                    ? 'bg-[#8FA67A] text-white shadow-md'
+                    : 'text-[#444444]/60 hover:text-[#444444] hover:bg-[#8FA67A]/5'
                 }`}
               >
                 {link.name}
-                {activeSection === link.href.replace('#', '') && isHomePage && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#D6C38A] rounded-full"></span>
-                )}
               </a>
             ))}
           </div>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden relative w-10 h-10 flex items-center justify-center text-[#444444] hover:text-[#8FA67A] transition-colors"
+            className="md:hidden w-10 h-10 flex items-center justify-center text-[#444444] bg-white/80 rounded-full shadow-sm"
           >
             <div className="relative w-5 h-5">
-              <span className={`absolute left-0 w-full h-0.5 bg-current transform transition-all duration-300 ${isMobileMenuOpen ? 'top-2 rotate-45' : 'top-0'}`}></span>
-              <span className={`absolute left-0 top-2 w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-              <span className={`absolute left-0 w-full h-0.5 bg-current transform transition-all duration-300 ${isMobileMenuOpen ? 'top-2 -rotate-45' : 'top-4'}`}></span>
+              <span className={`absolute left-0 w-full h-0.5 bg-current transform transition-all duration-300 rounded-full ${isMobileMenuOpen ? 'top-2 rotate-45' : 'top-0'}`}></span>
+              <span className={`absolute left-0 top-2 w-full h-0.5 bg-current transition-all duration-300 rounded-full ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+              <span className={`absolute left-0 w-full h-0.5 bg-current transform transition-all duration-300 rounded-full ${isMobileMenuOpen ? 'top-2 -rotate-45' : 'top-4'}`}></span>
             </div>
           </button>
         </div>
 
         <div className={`md:hidden transition-all duration-500 overflow-hidden ${isMobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
-          <div className="bg-white/98 border border-[#8FA67A]/15 rounded-2xl shadow-xl mt-3 p-5 backdrop-blur-xl">
-            <div className="space-y-1">
-              {navLinks.map((link) => (
-                <a key={link.name} href={link.href} onClick={(e) => handleNavClick(e, link.href)}
-                  className={`block px-4 py-3 font-nunito font-semibold transition-all duration-300 rounded-xl ${
-                    activeSection === link.href.replace('#', '') && isHomePage
-                      ? 'text-[#8FA67A] bg-[#8FA67A]/8'
-                      : 'text-[#444444]/50 hover:text-[#444444]'
-                  }`}
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
+          <div className="bg-white/98 border-2 border-[#D6C38A]/20 rounded-3xl shadow-xl mt-3 p-3 backdrop-blur-xl">
+            {navLinks.map((link) => (
+              <a key={link.name} href={link.href} onClick={(e) => handleNavClick(e, link.href)}
+                className={`block px-5 py-3 font-nunito font-semibold rounded-2xl transition-all ${
+                  activeSection === link.href.replace('#', '') && isHomePage
+                    ? 'bg-[#8FA67A] text-white'
+                    : 'text-[#444444]/60 hover:bg-[#8FA67A]/5'
+                }`}
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
         </div>
       </div>

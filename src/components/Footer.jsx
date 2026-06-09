@@ -10,50 +10,37 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-[#444444] text-white">
-      <div className="bg-[#3A3A3A]">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <h3 className="text-lg font-cormorant italic text-[#D6C38A] mb-1">Ready to Publish?</h3>
-              <p className="text-white/50 text-sm font-nunito">Access the go-live portal for your book</p>
-            </div>
-            <div className="flex justify-center">
-              <a
-                href="https://buy.stripe.com/7sY5kEdVm6vNfRU8Ey2kw07"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#D6C38A] text-[#444444] text-xl font-nunito font-bold py-5 px-12 rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-[#D6C38A]/30"
-              >
-                Launch & Go-Live Portal
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <footer className="bg-[#444444] text-white relative overflow-hidden">
+      {/* Top decoration */}
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#A8D5E5] via-[#8FA67A] to-[#D6C38A]"></div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div>
-            <span className="font-cormorant italic text-2xl text-[#D6C38A]">{authorInfo.name}</span>
-            <p className="text-white/40 text-sm font-nunito leading-relaxed mt-2">Pastor & Children's Author</p>
-          </div>
-          <div>
-            <h4 className="text-sm font-nunito font-bold mb-4 text-[#D6C38A] uppercase tracking-wider">Quick Links</h4>
-            <ul className="space-y-2">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <a href={link.href} onClick={(e) => handleScroll(e, link.href)} className="text-white/40 hover:text-white transition-colors text-sm font-nunito">{link.name}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-sm font-nunito font-bold mb-4 text-[#D6C38A] uppercase tracking-wider">Contact</h4>
-            <a href={`mailto:${authorInfo.email}`} className="text-white/40 hover:text-white transition-colors text-sm font-nunito block">{authorInfo.email}</a>
-          </div>
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="text-center mb-12">
+          <span className="font-cormorant italic text-4xl text-[#D6C38A]">{authorInfo.name}</span>
+          <p className="text-white/40 text-sm font-nunito mt-2">Pastor & Children's Author</p>
         </div>
-        <div className="border-t border-white/10 mt-12 pt-8 text-center">
+
+        <div className="flex flex-wrap justify-center gap-6 mb-12">
+          {navLinks.map((link) => (
+            <a key={link.name} href={link.href} onClick={(e) => handleScroll(e, link.href)} 
+              className="px-5 py-2 text-white/50 hover:text-white text-sm font-nunito font-semibold rounded-full hover:bg-white/5 transition-all">
+              {link.name}
+            </a>
+          ))}
+        </div>
+
+        <div className="flex justify-center mb-12">
+          <a
+            href="https://buy.stripe.com/7sY5kEdVm6vNfRU8Ey2kw07"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#D6C38A] text-[#444444] font-nunito font-bold py-4 px-10 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-[#D6C38A]/30"
+          >
+            Launch & Go-Live Portal
+          </a>
+        </div>
+
+        <div className="text-center border-t border-white/10 pt-8">
           <p className="text-white/25 text-sm font-nunito">
             &copy; {new Date().getFullYear()} {authorInfo.name}. All rights reserved.
           </p>
